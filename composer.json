@@ -1,0 +1,5 @@
+{
+    "name": "root/php-librdkafka",
+    "type": "project",
+    "require": {}
+}
