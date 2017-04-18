@@ -1,0 +1,36 @@
+version: '3'
+services:
+  apache:
+    image: pvonr/php-librdkafka
+    ports:
+      - "80:80"
+    depends_on:
+      - kafka
+    volumes:
+      - ./web/:/var/www/html/
+  kafka-rest:
+    image: confluentinc/cp-kafka-rest
+    ports:
+      - "8082:8082"
+    depends_on:
+      - kafka
+    environment:
+      KAFKA_REST_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_REST_HOST_NAME: kafka
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+      - "2181:2181"
+  kafka:
+    image: wurstmeister/kafka
+    ports:
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: ${HOST_IP}
+      KAFKA_ADVERTISED_PORT: 9092
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
