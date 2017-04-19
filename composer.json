@@ -1,0 +1,7 @@
+{
+	"name": "root/php-librdkafka",
+	"type": "project",
+	"require": {
+		"guzzlehttp/guzzle": "~6.0"
+	}
+}
