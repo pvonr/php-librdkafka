@@ -8,6 +8,7 @@ services:
       - kafka
     volumes:
       - ./web/:/var/www/html/
+      - ./vendor/:/var/www/vendor/
   kafka-rest:
     image: confluentinc/cp-kafka-rest
     ports:
